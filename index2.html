@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet"
+          href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+    <style>
+
+      body {
+        background-color: rgba(255, 255, 255, 0.538);
+      }
+      h1 {
+        margin-top: 8%;
+        text-align: center;
+      }
+      .container {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .inputf {
+        margin-top: 8px;
+      }
+      #userform {
+        border: 2px solid black;
+        border-radius: 4px;
+        padding: 25px;
+        background-color: rgba(65, 225, 97, 0.37);
+        text-align: center;
+        width: 360px;
+      }
+      
+      #btn {
+        margin-top: 10px;
+        border-radius: 4px;
+      }
+
+      .results {
+        border: 2px solid black;
+        text-align: center;
+        background-color: rgb(35, 217, 69);
+        border-radius: 4px;
+        margin-top: 20px;
+        width: 360px;
+        padding: 13px;
+      }
+
+      .results ul {
+        list-style-type: none;
+      }
+
+      .results li {
+        margin-top: 12px;
+      }
+
+      .remove-btn {
+        background-color: red;
+        border-radius: 5px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <h1>Movie App</h1>
+
+    <div class="container">
+
+      <form action="" id="userform">
+        <label for="1input">Title</label>
+          <input class="inputf" id="1input" type="text">
+          <br>
+        <label for="2input">Rating</label>
+          <input class="inputf" id="2input" type="number">
+          <br>
+        <button id="btn">Submit</button>
+      </form>
+
+      <div class="results">
+        <h2>Here are our results:</h2>
+        <ul class="userlistofresults">
+        </ul>
+      </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script>
+
+      // Submitting a new movie
+      $('form').on('submit', function(e) {
+          e.preventDefault();
+
+          // Assign variables
+          const title = $('#1input').val();
+          const rating = $('#2input').val();
+
+          // Concatenate input values into the HTML string
+          const newListItem = `<li>Title: ${title}, Rating: ${rating} <button class="remove-btn">X</button> </li>`;
+
+          $('ul').append(newListItem);
+
+          // Clear the  inputs
+          $('#1input').val('')
+          $('#2input').val('')
+      })
+
+      // Removing a Movie
+      $('ul').on('click', '.remove-btn', function() {
+        $(this).closest('li').remove();
+        });
+
+    </script>
+
+
+  </body>
+
+</html>
